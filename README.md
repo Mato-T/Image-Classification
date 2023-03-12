@@ -1,6 +1,6 @@
 # Project Description
 ## Introduction
-- This project is about classifying images of different types of fruits and vegetables. Most of the time I spent developing deep learning models was focused on natural language processing, but I wanted to extend my knowledge to computer vision, so I created this project.
+- This project is about classifying images of different types of fruits and vegetables. Most of the time I spent developing deep learning models focused on natural language processing, but I wanted to extend my knowledge to computer vision, so I created this project.
 - The dataset can be found on Kaggle at this URL: https://www.kaggle.com/datasets/kritikseth/fruit-and-vegetable-image-recognition. I chose this dataset because it was created by scraping from Bing image search. This is the simplest (perhaps too simple, as will be explained later) approach to collecting a diverse dataset, and it is probably the approach I would have used if no datasets were available.
 - I created two models for this dataset. One was created along with augmentations to generalize it to real data, while the other uses the original dataset and forms a sort of baseline. 
 - Please note that the following information should be read along with the Python code in this repository.
