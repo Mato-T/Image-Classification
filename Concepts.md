@@ -118,3 +118,37 @@
 - Finally, the new velocity will update the current parameters resulting in the ultimate updated weights
 
   $$\theta^{t+1}=\theta^t-v^{t+1}$$
+
+
+# Adding Variance to Momentum
+- One of the most popular optimization techniques is called adaptive moment estimation (Adam), which is strongly related to the SGD with momentum
+- A few terms have to me renamed: the velocity $v$ becomes $m$, and the momentum weight $\mu$ becomes $\beta_1$
+
+  $$m^t=\beta_1*m^{t-1}+(1-\beta_1)*g^t$$
+
+- The idea behind using the term $(1-\beta_1)$ is to give more weight to the current gradient in the exponential moving average, and less weight to the previous estimate. This helps to adaptively adjust the learning rate for each parameter based on the gradient history
+- It is called exponential because the gradient from $z$ steps ago, $g^{t-z}$, is exponential contributing less at each iteration (because the equation is multiplied by $1-\beta_1$ at each iteration). It is a moving average because it is includes an average of all previous gradients and as more and more $\beta_1$ are added to older gradients, the weight of the average is determined by newer gradients; thus moving along as the epochs progress
+
+  $$m_4=(1-\beta)[g_4+\beta¹g_3+\beta²g_2+\beta³g_1]$$
+
+- Note that $\beta$ controls the moving average. A common value is $\beta=0.9$, meaning the average is taken over the last 10 iterations’ gradients ($1-0.9=\frac 1{10}$). When talking about momentum as an average gradient over multiple updates, variance can be considered as well. For one single data point, variance is just the residual (distance to the mean)
+- If one parameter $g^t_j$ has high variance, it should not contribute too much to the momentum because it will likely change again. If a parameter $g^t_j$ has low variance, it is a reliable direction to head in, so it should have more weight in the momentum calculation
+- To implement this idea, information about the variance over time can be calculated by looking at squared gradient values divided by the number of iterations (formula for variance). A momentum term is added to provide more accurate information about variance over time
+- Using $\odot$ to denote the elementwise multiplication between two vectors leads to this equation for variance of velocity $v$, where $(1-\beta_2)*g^t\odot g^t$ is an approximate of variance. Adding momentum into account, this will provide a good representation of variance
+
+  $$v^t=\beta_2*v^{t-1}+(1-\beta_2)*g^t\odot g^t$$
+
+- There must be one alteration done to $m^t$ and $v^t$ before combining them into one equation. Because at the early stage of optimization, $t$ is a small value, $m^t$ and $v^t$ would give a biased estimate of the mean and variance
+- They are biased because the mean and variance are initialized to zero, so early estimates will be too small if they are used naively. For example, if $t=1$ the value of $m_1$ would be
+
+  $$m_1=(1-\beta_1)*g_1$$
+
+- However this doesn’t represent the actual average. The actual average would simply be just $g_1$ (because $g_1/1=g_1$). To balance the equation, add the following
+
+  $$\hat m=\frac{m^t}{1-\beta^t_1}\\\qquad \hat v=\frac{v^t}{1-\beta^t_2}$$
+
+- With $\hat v$ and $\hat m$ at hand, they can be used together to update the weights $\theta$
+
+  $$\theta^{t+1}=\theta^t-\eta\frac{\hat m}{\sqrt{\hat v} + \epsilon}$$
+
+- The numerator $\eta*\hat m$ is computing the SGD with momentum term, but now, each dimension is normalized by the variance. That way, if a parameter has naturally large swings in its value, it will not have a huge impact ($\epsilon$ is a very small term so division by zero is avoided)
