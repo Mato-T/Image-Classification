@@ -45,7 +45,7 @@ For this reason, I created my own "validation dataset" using self-selected image
 - When evaluated, the model appears to have the same number of misclassifications as the model used in augmentation (6% misclassifications). Let's now take a look at some of the misclassifications:
 
   ![image](https://user-images.githubusercontent.com/127037803/224541167-b7dcdc62-966c-4914-8208-f97ee3cd9be9.png)
-- As mentioned earlier, the dataset contains some inappropriate images, so some of the misclassifications are understandable. Again, high confidence misclassifications occur when distinguishing sweet corn from corn. However, predictions such as watermelon for chili bell pepper and eggplant for bell pepper appear to be way off. However, the confusion matrix shows good results:
+- As mentioned earlier, the dataset contains some inappropriate images, so some of the misclassifications are understandable. Again, high confidence misclassifications occur when distinguishing sweet corn from corn. However, predictions such as watermelon for chili pepper and eggplant for bell pepper appear to be way off. However, the confusion matrix shows good results:
 
   ![image](https://user-images.githubusercontent.com/127037803/224541443-7955d97d-5321-449a-8824-c26e398a28f7.png)
 - All these factors lead to the conclusion that the model strongly overfits the training/test data. The following figure shows the performance on images that I selected myself:
