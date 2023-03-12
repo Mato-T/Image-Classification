@@ -163,6 +163,6 @@ $\qquad \eta_t=\eta_{min}+(\eta_0-\eta_{min})\frac12(1+\cos(\frac{t}{T_{max}}\pi
 - The cosine approach makes sense as a solution because a neural network can have several local minima and if the model first heads towards one of these local minima and the learning rate is decreased only, the model might get stuck in this sub-optimal area
 
 # Sources
-Huge thank you to Manning Publications and their "Deep Learning with Python". It dives deeper into the concepts but also allows for further research.
+Huge thank you to Manning Publications and their "Inside Deep Learning (Math, Algorithms, Models)". Very detailed and well explained.
 
-https://www.manning.com/books/deep-learning-with-python
+https://www.manning.com/books/inside-deep-learning
