@@ -161,3 +161,8 @@ $\qquad \eta_t=\eta_{min}+(\eta_0-\eta_{min})\frac12(1+\cos(\frac{t}{T_{max}}\pi
 
 - The cosine terms fluctuates up and down like a cosine function normally does, but it is rescaled to have a maximum at $\eta_0$ and a minimum at $\eta_{min}$
 - The cosine approach makes sense as a solution because a neural network can have several local minima and if the model first heads towards one of these local minima and the learning rate is decreased only, the model might get stuck in this sub-optimal area
+
+# Sources
+Huge thank you to Manning Publications and their "Deep Learning with Python". It dives deeper into the concepts but also allows for further research.
+
+https://www.manning.com/books/deep-learning-with-python
