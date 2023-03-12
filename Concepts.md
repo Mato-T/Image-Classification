@@ -152,3 +152,12 @@
   $$\theta^{t+1}=\theta^t-\eta\frac{\hat m}{\sqrt{\hat v} + \epsilon}$$
 
 - The numerator $\eta*\hat m$ is computing the SGD with momentum term, but now, each dimension is normalized by the variance. That way, if a parameter has naturally large swings in its value, it will not have a huge impact ($\epsilon$ is a very small term so division by zero is avoided)
+
+# Cosine Annealing
+- This approach to adjusting the learning rate is very effective for getting the best possible results but does not provide the same degree of stabilization as other methods, so it might not work on poorly behaved datasets and networks
+- Cosine annealing has an initial learning rate $\eta_0$ and a minimum rate $\eta_{min}$; the learning rate alternates between the minimum and maximum learning rates. $T_{max}$ is the number of epochs between cycles
+
+$\qquad \eta_t=\eta_{min}+(\eta_0-\eta_{min})\frac12(1+\cos(\frac{t}{T_{max}}\pi))$
+
+- The cosine terms fluctuates up and down like a cosine function normally does, but it is rescaled to have a maximum at $\eta_0$ and a minimum at $\eta_{min}$
+- The cosine approach makes sense as a solution because a neural network can have several local minima and if the model first heads towards one of these local minima and the learning rate is decreased only, the model might get stuck in this sub-optimal area
