@@ -61,3 +61,30 @@
 ## Batch Normalization
 - The most popular type of normalization is batch normalization (BN). BN is applied differently depending on the structure of the input data. When working with fully connected layers (dimension (B, D)), take the average and standard deviation of the feature values D over the B items in the batch
 - Hence, it is normalized over the data features in a given batch. This means that $\mu, \sigma, \gamma, \beta$ have a shape of D, and each item in the batch is normalized by the mean and standardization of just that batch of data
+
+# Residual Connections
+## Skip Connections
+- With a normal feed-forward network, an output from one layer goes directly to the next layer. With skip connections, this is still true, but the next layer is also skipped and connected to a preceding layer as well
+
+  ![skip](https://user-images.githubusercontent.com/127037803/224552290-e33e5684-12bd-4533-881a-c555b2d66180.png)
+- The right two diagrams show two different ways to implement skip connections. The black dots on the connections indicate concatenation of the outputs (works with other kind of layers as well)
+- So if $x$ and $h$ connect in the diagram, they input to the next layer: $[x, h]$. That way, the two inputs $x$ and $h$ have shapes (B, D) and (B, H). These features shall be stacked so the result will have shape (B, D + H)
+- Every operation done makes the network more complex, but also makes the gradient more complex, creating a tradeoff between depth (capacity) and learnability (optimization). Skip connections create a short path with fewer operations, and can make the gradient easier to learn as exploding or vanish gradients are less likely to occur
+
+## 1x1 Convolutions
+- Convolutions are used to capture information about the relationship of values near each other. As such, the convolutions have a kernel with some size k so information about [k/2] neighbors
+- However, when k is set to 1, no information about the neighbors is obtained and thus no spatial information is captured
+- One particular application, where this would be useful, is to change the number of channels at a given layer. In the previous section, a Conv2d layer was inserted to convert the number of channels C into a more convenient value
+- This is possible because there are $C_{in}$ input channels and $C_{out}$ output channels when performing a convolution. So a convolution with $k=1$ is looking not at a spatial neighbors but at spatial channels by grabbing a stack of $C_{in}$ values and processing them all at once
+
+  ![1x1](https://user-images.githubusercontent.com/127037803/224552210-89493c44-382a-43fa-b8b9-ffe825ff7286.png)
+
+## Residual Bottlenecks
+- The residual layer is a simple extension of the skip connection idea that works by making the short path do as little work as possible to help with the gradient flow and minimize noise
+- 1 x 1 convolutions are a fast and practical way to change the number of channels in the input without  changing its size. Shrinking and then expanding is the general idea behind residual bottlenecks. There are two main reasons for implementing a bottleneck
+- The first is a design choice, where the original authors wanted to make their networks deeper as a way to increase their capacity. Making the bottlenecks shrink and then expand keeps the number of parameters down, saving GPU memory for adding more layers
+- The second reason draws on the concept of compression. The idea is that the model is forced to go from a large number of parameters to a small number, this will force the model to create more meaningful and compact representations
+
+  ![bottleneck](https://user-images.githubusercontent.com/127037803/224552533-4f2350a6-0518-49cb-acf9-0cac4c6267eb.png)
+- In the residual bottleneck approach, the short path is still short and has no activation function but simply performs a 1 x 1 convolution followed by batch normalization to change the original number of channels C into the desired number C’ to match the output of the subnetwork
+- The first hidden layer of the subnetwork uses a 1 x 1 convolution to shrink the number of channels C before doing a normal hidden layer in the middle, followed by a final 1 x 1 convolution to expand the number of channels back up to the original account
