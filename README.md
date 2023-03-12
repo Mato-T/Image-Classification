@@ -10,7 +10,7 @@
 
   ![image](https://user-images.githubusercontent.com/127037803/224535400-c6f7b9fb-9423-4401-996a-e634e0d040bd.png)
 - As seen in the plot, the images vary greatly. Some images look like stock images (high quality images with the object in the center on a white background), others are taken from a greater distance and show the plant in nature (possibly introducing noise from surrounding objects), and some show the object in large numbers in one image.
-- This can be a problem with simple models, since a lemon, for example, can be shown in very different ways. A lemon on a tree is very different from a collection of lemons on a table, which in turn is different from a stock image of a lemon cut open. Especially with a small sample size, it will be difficult for simple models to detect patterns in the images.
+- This can present a problem for simple models, since a lemon, for example, can be shown in very different ways. A lemon on a tree is very different from a collection of lemons on a table, which in turn is different from a stock image of a lemon cut open. Especially with a small sample size, it will be difficult for simple models to detect patterns in the images.
 - Let us now look at the class distribution.
 
   ![image](https://user-images.githubusercontent.com/127037803/224536042-375f288d-33c2-4d16-a478-f4d3a68d9a29.png)
