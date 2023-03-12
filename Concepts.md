@@ -88,3 +88,33 @@
   ![bottleneck](https://user-images.githubusercontent.com/127037803/224552533-4f2350a6-0518-49cb-acf9-0cac4c6267eb.png)
 - In the residual bottleneck approach, the short path is still short and has no activation function but simply performs a 1 x 1 convolution followed by batch normalization to change the original number of channels C into the desired number C’ to match the output of the subnetwork
 - The first hidden layer of the subnetwork uses a 1 x 1 convolution to shrink the number of channels C before doing a normal hidden layer in the middle, followed by a final 1 x 1 convolution to expand the number of channels back up to the original account
+
+# Stochastic Gradient Descent with Momentum
+- The learning rate should be increased if the gradient for parameter $j$ consistently heads in the same direction. This can be described as wanting the gradient to build momentum
+- If the gradient in one direction keeps returning similar values, it should start taking bigger and bigger steps in the same direction
+- The normal gradient update equation looks like this
+
+  $$\theta^{t+1}=\theta^t-\eta g^t$$
+
+- The initial version of the momentum idea is to have a momentum $\mu$, which has some value in range (0, 1). Next, a velocity term called $v$ is added, which accumulates the momentum. The new velocity term $v^{t+1}$ consists of the current momentum and gradient
+
+  $$v^{t+1}=\mu v^t+\eta g^t$$
+
+- Because $v^{t+1}$ depends on the previous velocity and gradient, it always takes all previous gradient updates into account (that altered $v$ over the time). Next, $v$ simply replaces $g$ to perform the gradient update
+
+  $$\theta^{t+1}=\theta^t-v^{t+1}$$
+
+- The velocity always consists of the old gradients and after many iterations, many rounds of momentum has been applied to older gradients but only once for the gradient of the previous time step. And because $µ$ is smaller than one, it has a shrinking effect on these old gradients
+- There is another form of momentum called Nesterov momentum, which has the advantage if the loss is moving in a wrong direction, Nesterov will push back the model back in the correct direction sooner
+- The way it work is to first calculate the updated parameters ($\theta^{t’}$) based on the current parameters and velocity
+
+  $$\theta_{t’}=\theta^t-\mu v^t$$
+
+- Second, the training data is passed into the network with these new updated parameters. This will check where the model is heading. If the current momentum ($\mu v^t$) is pushing the model in the wrong direction the gradient ($\nabla_{\theta^{t’}}f_{\theta^{t’}}(x)$) would be much higher pushing it back in the correct direction
+- Combined, these two will result in a smaller step that is closer to the solution
+
+  $$v^{t+1}=\mu v^t+\eta\nabla_{\theta^{t’}}f_{\theta^{t’}}(x)$$
+
+- Finally, the new velocity will update the current parameters resulting in the ultimate updated weights
+
+  $$\theta^{t+1}=\theta^t-v^{t+1}$$
