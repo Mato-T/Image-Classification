@@ -31,7 +31,7 @@
 - Note that I saved the model after the training so that the progress would not be lost after closing the notebook. For this reason, I retrieved the model from the file for the evaluation. First, I wanted to see what problems my model was facing. Consider the following misclassifications:
 
   ![image](https://user-images.githubusercontent.com/127037803/224536759-32900466-062f-4468-b9c0-095d63de250e.png)
-- As suspected, the model does not generalize very well. It relies heavily on color, as seen in the example of cabbage. The colors seem to match those of bananas (probably immature bananas). However, because of the different shapes and sizes in the training sample, the model is not able to focus more on shape than just color.
+- As suspected, the model does not generalize very well. It relies heavily on color, as seen in the example of cabbage. The colors seem to match those of bananas (probably immature bananas). However, because of the different display of shapes and sizes in the dataset, the model is not able to focus more on shape than just color.
 - Some misclassifications are very understandable, such as the distinction between corn and sweet corn. Also, there is no clear distinction between bell peppers and capsicums. Capsicum is the name of the genus from which the plant originates, which includes sweet, bell, and hot peppers. Since the dataset was created from Bing images, it also includes misclassified images, such as the Apple Inc. logo, which was classified as an apple.
 - Another interesting visualization is the creation of a confusion matrix along with a heat map showing how different fruits or vegetables are misclassified:
 
