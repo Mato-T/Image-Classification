@@ -28,7 +28,7 @@
 
 ## Evaluation
 ### Model in Augmentation
-- Note that I saved the model after the training so that the progress would not be lost after closing the notebook. For this reason, I reloaded it during the evaluation. First, I wanted to see what problems my model was facing. Consider the following misclassifications:
+- Note that I saved the model after the training so that the progress would not be lost after closing the notebook. For this reason, I retrieved the model from the file for the evaluation. First, I wanted to see what problems my model was facing. Consider the following misclassifications:
 
   ![image](https://user-images.githubusercontent.com/127037803/224536759-32900466-062f-4468-b9c0-095d63de250e.png)
 - As suspected, the model does not generalize very well. It relies heavily on color, as seen in the example of cabbage. The colors seem to match those of bananas (probably immature bananas). However, because of the different shapes and sizes in the training sample, the model is not able to focus more on shape than just color.
