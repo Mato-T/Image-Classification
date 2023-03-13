@@ -37,7 +37,8 @@
 
   ![image](https://user-images.githubusercontent.com/127037803/224537436-94ccdba3-838a-4f7e-a3c2-5ed51bd2f9a4.png)
 - Surprisingly, the model seems to classify most fruits and vegetables without any problems, which is strange since it doesn't seem to recognize the shape very well considering the previous examples.
-For this reason, I created my own "validation dataset" using self-selected images off the Internet. I scrolled down further to reduce the risk of selecting images that were included in the training/test set. I focused on images where the fruit/vegetable was clearly visible and in the most common color (e.g., yellow banana, red tomato, etc.). I chose vegetables with unique colors where the model could predict the correct class (e.g., cauliflower and eggplant), but also images where the model needs to focus on shape rather than color (e.g., green vegetables such as lettuce, chilies, and cabbage). These are the predictions made:
+For this reason, I created my own "validation dataset" using self-selected images off the Internet. I scrolled down further to reduce the risk of selecting images that were included in the training/test set.
+I focused on images where the fruit/vegetable was clearly visible and in its most common color (e.g., yellow banana, red tomato, etc.). I chose vegetables with unique colors where the model could easily predict the correct class (e.g., cauliflower and eggplant), but also images where the model needs to focus on shape rather than color (e.g., green vegetables such as lettuce, chilies, and cabbage). These are the predictions made:
 
   ![image](https://user-images.githubusercontent.com/127037803/224537709-df6516a4-cb4d-4b18-9543-cd8c19f84dc9.png)
 - In this case, the model misclassified 5 out of 12, indicating that the model is overfitting the test and training data. As seen in the plot, the model has trouble distinguishing between vegetables that are of the same color (e.g., green). However, it did recognize the pear and was able to distinguish between ginger and soybeans, which have similar colors.
@@ -46,7 +47,7 @@ For this reason, I created my own "validation dataset" using self-selected image
 - When evaluated, the model appears to have the same number of misclassifications as the model used in augmentation (6% misclassifications). Let's now take a look at some of the misclassifications:
 
   ![image](https://user-images.githubusercontent.com/127037803/224541167-b7dcdc62-966c-4914-8208-f97ee3cd9be9.png)
-- As mentioned earlier, the dataset contains some inappropriate images, so some of the misclassifications are understandable. Again, high confidence misclassifications occur when distinguishing sweet corn from corn. However, predictions such as watermelon for chili pepper and eggplant for bell pepper appear to be way off. However, the confusion matrix shows good results:
+- As mentioned earlier, the dataset contains some inappropriate images, so some of the misclassifications are understandable. Again, high confidence misclassifications occur when distinguishing sweet corn from corn. However, predictions such as watermelon for chili pepper, and eggplant for bell pepper appear to be way off. However, the confusion matrix shows good results:
 
   ![image](https://user-images.githubusercontent.com/127037803/224541443-7955d97d-5321-449a-8824-c26e398a28f7.png)
 - All these factors lead to the conclusion that the model strongly overfits the training/test data. The following figure shows the performance on images that I selected myself:
