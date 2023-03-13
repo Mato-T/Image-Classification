@@ -60,9 +60,7 @@ I focused on images where the fruit/vegetable was clearly visible and in its mos
 - While I suppose it's naive to think that I can create a well-performing fruit/vegetable classifier by randomly taking a few images from the Web, it was a great opportunity to learn more about data augmentation and how to approach any computer vision task.
 - As it turns out, data augmentation can be a great tool to generalize a model and expand the data set when there is little labeled data. Although the model used in augmentation performs worse in training and testing, it is still an improvement over the base model when it comes to data it has never seen.
 - I think this model can be further improved by collecting more data and tuning the hyperparameters. However, my computational resources were limited and it took a lot of time to train and experiment with different models and hyperparameters.
-
-
-
+- Note that each concept described in this documentation is explained in more detail in the Concept.md file. For more information on the different scores and cross entropy, check out the Concept.md file in the Fraud-Detection repository.
 
 
 
