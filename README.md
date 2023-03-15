@@ -3,7 +3,7 @@
 - This project is about classifying images of different types of fruits and vegetables. Most of the time I spent developing deep learning models focused on natural language processing, but I wanted to extend my knowledge to computer vision, so I created this project.
 - The dataset can be found on Kaggle at this URL: https://www.kaggle.com/datasets/kritikseth/fruit-and-vegetable-image-recognition. I chose this dataset because it was created by scraping from Bing image search. This is the simplest (perhaps too simple, as explained later on) approach to collecting a diverse dataset, and it is probably the approach I would have used if no datasets were available.
 - I created two models for this dataset. One was created along with augmentations to generalize it to real data, while the other uses the original dataset and forms a sort of baseline. 
-- Please note that the following information should be read along with the Python code in this repository.
+- Please note that the following information should be read along with the Python code in this repository and requires a basic understanding of neural networks. Each concept described in this documentation is explained in more detail in the Concept.md file. For more information on the different scores and cross entropy, check out the Concept.md file in the Fraud-Detection repository.
 ## Preparation and Analysis
 - As mentioned earlier, I have created a dataset that contains augmented images. In this case, I am performing rotation, translation, and shear on each image. Since the dataset does not contain many images, I concatenated it with the original dataset to create a single dataset. 
 - Here are some sample images from the dataset to get a feel for how the dataset is structured and how that affects the decisions that need to be made when building the model. 
@@ -60,7 +60,6 @@ I focused on images where the fruit/vegetable was clearly visible and in its mos
 - While I suppose it's naive to think that I can create a well-performing fruit/vegetable classifier by randomly taking a few images from the Web, it was a great opportunity to learn more about data augmentation and how to approach any computer vision task.
 - As it turns out, data augmentation can be a great tool to generalize a model and expand the data set when there is little labeled data. Although the model used in augmentation performs worse in training and testing, it is still an improvement over the base model when it comes to data it has never seen.
 - I think this model can be further improved by collecting more data and tuning the hyperparameters. However, my computational resources were limited and it took a lot of time to train and experiment with different models and hyperparameters.
-- Note that each concept described in this documentation is explained in more detail in the Concept.md file. For more information on the different scores and cross entropy, check out the Concept.md file in the Fraud-Detection repository.
 
 
 
