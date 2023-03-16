@@ -145,7 +145,8 @@
 
 - However this doesn’t represent the actual average. The actual average would simply be just $g_1$ (because $g_1/1=g_1$). To balance the equation, add the following
 
-  $$\hat m=\frac{m^t}{1-\beta^t_1}\\\\qquad \hat v=\frac{v^t}{1-\beta^t_2}$$
+  $$\hat m=\frac{m^t}{1-\beta^t_1}$$
+  $$\hat v=\frac{v^t}{1-\beta^t_2}$$
 
 - With $\hat v$ and $\hat m$ at hand, they can be used together to update the weights $\theta$
 
@@ -157,7 +158,7 @@
 - This approach to adjusting the learning rate is very effective for getting the best possible results but does not provide the same degree of stabilization as other methods, so it might not work on poorly behaved datasets and networks
 - Cosine annealing has an initial learning rate $\eta_0$ and a minimum rate $\eta_{min}$; the learning rate alternates between the minimum and maximum learning rates. $T_{max}$ is the number of epochs between cycles
 
-  $$\eta_t=\eta_{min}+(\eta_0-\eta_{min})\frac12(1+\cos(\frac{t}{T_{max}}\pi))$%
+  $$\eta_t=\eta_{min}+(\eta_0-\eta_{min})\frac12(1+\cos(\frac{t}{T_{max}}\pi))$$
 
 - The cosine terms fluctuates up and down like a cosine function normally does, but it is rescaled to have a maximum at $\eta_0$ and a minimum at $\eta_{min}$
 - The cosine approach makes sense as a solution because a neural network can have several local minima and if the model first heads towards one of these local minima and the learning rate is decreased only, the model might get stuck in this sub-optimal area
