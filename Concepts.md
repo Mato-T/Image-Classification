@@ -22,7 +22,7 @@
 - The tanh and sigmoid are two of the original activation functions used for neural networks, but they are not the only options because both of them can lead to a problem called vanishing gradient
 - At the end of each layer, the activation $a$ is passed into a sigmoid function to produce the output vector of that layer: $h=\sigma(a)$. This means when calculating the derivative of the loss function with respect to the first weight vector, for instance, the derivative of $\sigma(a)$ is included for this and all consecutive layers
 - Note that the derivative of $\sigma(a)$ is equal to $\sigma(a)(1-\sigma(a))$ and because that term is bound in the range $[0,1]$, the largest this value can get is if $\sigma(a)=0.5$, meaning $0.5(1-0.5)=0.25$ is the largest possible outcome
-- Based on these calculations, consecutive sigmoid activation functions will decrease the the gradient of the loss function with respect to the first weight vector, diminishing the effect it can have on the loss function. This property also applies to the tanh() activation function
+- Based on these calculations, consecutive sigmoid activation functions will decrease the gradient of the loss function with respect to the first weight vector, diminishing the effect it can have on the loss function. This property also applies to the tanh() activation function
 
 ## Recitfied Linear Units
 - The most common approach to fixing vanishing gradients is to use an activation function known as the rectified linear unit, which has a very simple definition
@@ -86,7 +86,7 @@
 - The second reason draws on the concept of compression. The idea is that the model is forced to go from a large number of parameters to a small number, this will force the model to create more meaningful and compact representations
 
   ![bottleneck](https://user-images.githubusercontent.com/127037803/224552533-4f2350a6-0518-49cb-acf9-0cac4c6267eb.png)
-- In the residual bottleneck approach, the short path is still short and has no activation function but simply performs a 1 x 1 convolution followed by batch normalization to change the original number of channels C into the desired number C’ to match the output of the subnetwork
+- In the residual bottleneck approach, the short path has no activation function and simply performs a 1 x 1 convolution followed by batch normalization to change the original number of channels C into the desired number C’ to match the output of the subnetwork
 - The first hidden layer of the subnetwork uses a 1 x 1 convolution to shrink the number of channels C before doing a normal hidden layer in the middle, followed by a final 1 x 1 convolution to expand the number of channels back up to the original account
 
 # Stochastic Gradient Descent with Momentum
